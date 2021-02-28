@@ -1,0 +1,69 @@
+/* add-task.component.css */
+
+form{
+
+    padding-top: 10px;
+
+    font-family: 'Lato',Arial, Helvetica, sans-serif;
+
+}
+
+.form-class{
+
+    align-items: center;
+
+    padding-left: 8%;
+
+    padding-right: 5%;
+
+}
+
+.form-group select{
+
+    width: 100%;
+
+}
+
+.form-group input{
+
+    width: 100%;
+
+}
+
+.btn-group{
+
+    display:block; /* Change to flex, if want side by side */
+
+}
+
+form button{
+
+    margin-bottom: 10px;
+
+    width: 100%;
+
+}
+
+.form-check{
+
+    padding: 10px 20px 30px 40px;
+
+}
+
+.userdata{
+
+    padding-top: 10px;
+
+    margin-right: 5%;
+
+    margin-left: 6%;
+
+    height: 450px;
+
+    overflow-y: scroll;
+
+    /* box-shadow: 0 0 10px gainsboro; */
+
+}
+
+

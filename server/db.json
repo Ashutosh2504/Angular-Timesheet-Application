@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "name": "dasd",
+      "email": "ascas",
+      "role": "employee",
+      "password": "123",
+      "id": 7
+    },
+    {
+      "name": "dsdas",
+      "email": "addd",
+      "role": "ad",
+      "password": "ssas",
+      "id": 8
+    }
+  ],
+  "admin": [
+    {
+      "name": "dasd",
+      "email": "ascas",
+      "role": "admin",
+      "password": "123",
+      "id": 12
+    }
+	]
+  
+}
