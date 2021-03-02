@@ -12,6 +12,9 @@ import { SpecialEventsComponent } from './special-events/special-events.componen
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { ApplyLeaveComponent } from './leave/apply-leave/apply-leave.component';
+import { AllUserDataComponent } from './all-user-data/all-user-data.component';
+import { ApproveLeaveComponent } from './leave/approve-leave/approve-leave.component';
 
 
 @NgModule({
@@ -22,6 +25,9 @@ import { AddTaskComponent } from './add-task/add-task.component';
     EventsComponent,
     SpecialEventsComponent,
     AddTaskComponent,
+    ApplyLeaveComponent,
+    AllUserDataComponent,
+    ApproveLeaveComponent,
   
   ],
   imports: [

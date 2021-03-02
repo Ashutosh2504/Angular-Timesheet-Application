@@ -15,16 +15,16 @@
               <strong>Success!</strong> Data Cleared.
             </div>
   
-            <form #addTaskForm="ngForm" (ngSubmit)="onSubmit(addTaskForm)"> 
+            <form class="form"> 
   
                 <div class="form-group">
                     <label>Task Name: </label><br/>
-                    <input type="text" class="form-control" name="name" ngModel>
+                    <input type="text" class="form-control" [(ngModel)] = "taskData.taskName" name="name" required>
                 </div>
   
                 <div class="form-group">
                     <label>Task Category: </label><br/>
-                    <input list="task-category" class="form-control" name="category" ngModel>
+                    <input list="task-category" class="form-control" name="taskCategory" [(ngModel)] = "taskData.taskCategory">
                     <datalist id="task-category">
                         <option value="Training and Development">
                         <option value="Client Meeting">
@@ -35,16 +35,17 @@
   
                 <div class="form-group">
                     <label>WON/SWON: </label><br/>
-                    <input type="text" class="form-control" name="won-swon" ngModel>
+                    <input type="text" class="form-control" name="won" [(ngModel)] = "taskData.won">
                 </div>
   
                 <div class="form-group">
                     <label>Duration: </label><br/>
-                    <input type="number" class="form-control " name="duration" [ngModel] = "duration">
+                    <input type="number" class="form-control " name="duration" [(ngModel)] = "taskData.duration">
                 </div>
                 <div class="btn-group">
-                  <button type="submit" class="btn btn-success btn-lg">Submit</button>
-                  <button type="button" (click)="resetInfo(addTaskForm)" class="btn-danger btn-lg">Reset</button>
+                  <button type="submit" class="btn btn-success btn-lg" (click) = "addTaskData()">Submit</button>
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Apply Leave</button>
+                  <!-- <button type="button" (click)="resetInfo(addTaskForm)" class="btn-danger btn-lg">Reset</button> -->
                   
               </div>
             </form>
@@ -73,4 +74,45 @@
             </table>
       </div>
     </div>
+
   </div>
+
+  <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        <h4 class="modal-title">Leave Application</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          
+          <div class="form-group">
+            <label for="sel1">Leave Type</label>
+            <input list="leave-category" class="form-control" name="leaveCategory" [(ngModel)] = "leaveData.leaveCategory">
+                    <datalist id="leave-category">
+                        <option value="Sick Leave (SL)">
+                        <option value="Casual Leave (CL)">
+                        <option value="Maternity Leave (ML)">
+                        <option value="Marriage Leave (MRL)">
+                    </datalist>
+            <!-- {{leaveData.leaveCategory}} -->
+              <!-- <option value="sick leave">Sick Leave (SL)</option>
+              <option value="casual leave">Casual Leave (CL)</option>
+              <option value="maternity leave">Maternity Leave (ML)</option>
+              <option value="marriage leave">Marriage Leave (MRL)</option> -->
+            
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" (click) = "applyLeave()">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</div>

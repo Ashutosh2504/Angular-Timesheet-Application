@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,9 @@ export class LoginComponent implements OnInit {
 
   loginUserData = {email:"",
   password: "",
-  tokens :''}
+  tokens :'',
+  leaveStatus:""
+}
 
  
 
@@ -24,6 +27,7 @@ export class LoginComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
+    this.isLoggedIn();
   }
 
 ///checking the usertype
@@ -66,13 +70,23 @@ changeUser(userOrAdmin) {
     if(this.isLoginUserOrAdmin){
       // user login
       let result = await this._auth.loginUser(this.loginUserData).toPromise();
-      this.loginUserData.tokens = result.token;
+      this.loginUserData.tokens = result.jwt;
+      console.log(result.jwt);
+      console.log(result.leaveStatus);
+
+      //console.log(this.loginUserData.tokens);
+      
+      sessionStorage.setItem("tokenUser",this.loginUserData.tokens);
+      sessionStorage.setItem("emailUser",this.loginUserData.email);
       
       
       if(result.status === "SUCCESS"){
         console.log("Login success");
         this._router.navigate(['/add-task']); // User component
 
+      }
+      else{
+        alert("Please Verify your Credentials");
       }
       console.dir(result);
 
@@ -81,13 +95,13 @@ changeUser(userOrAdmin) {
       // admin login
       let result = await this._auth.loginAdmin(this.loginUserData).toPromise();
       this.loginUserData.tokens = result.jwt;
-      sessionStorage.setItem("token",this.loginUserData.tokens);
+      sessionStorage.setItem("tokenAdmin",this.loginUserData.tokens);
       console.log(result.jwt+": ashu");
       if(result.status === "SUCCESS"){
         console.log("Login success");
-        alert("Logged In Successfully");
-        
-        this._router.navigate(['/add-task']); // admin component
+        // alert("Logged In Successfully");
+
+        this._router.navigate(['/allUsers']); // admin component
       }
       else{
         alert("Please Verify your Credentials");
@@ -98,6 +112,19 @@ changeUser(userOrAdmin) {
     }
 
    
+  }
+  isLoggedIn(){
+    if(this._auth.loggedInUser())
+    {
+      // alert("login hai ye");
+      this._router.navigate(['/add-task']);
+
+    }
+    else{
+      if (this._auth.loggedInAdmin()) {
+        this._router.navigate(['/allUsers']);
+      }
+    } 
   }
 
 

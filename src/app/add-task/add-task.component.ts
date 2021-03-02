@@ -5,6 +5,7 @@ import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-add-task',
@@ -15,7 +16,20 @@ export class AddTaskComponent implements OnInit {
   duration = "9";
   id = 1;
   taskDetails: Task[];
-  constructor(private taskService:TaskService) { }
+
+  taskData = {
+    token:"",
+    date: "",
+    taskName: "",
+    taskCategory:"",
+    won:"",
+    duration:""
+  }
+  leaveData ={
+    token:"",
+     leaveCategory:""
+    };
+  constructor(private taskService:TaskService, private _auth: AuthService) { }
 
   ngOnInit(): void {
     this.taskDetails = this.taskService.onGet();
@@ -72,5 +86,53 @@ export class AddTaskComponent implements OnInit {
     this.taskService.onAdd(todaysTask);
     this.showAlert();
   }
+
+  async addTaskData(){
+    console.log(this.taskData);
+    this.taskData.token = sessionStorage.getItem("tokenUser");
+    console.log("Ashu");
+    console.log(this.taskData);
+    
+
+    try {
+      const response = await this._auth.addTimesheetData(this.taskData).toPromise(); 
+      console.log(response+" Ashutosh");
+      
+      if(response.status === "SUCCESS"){
+        alert("Timesheet Added Successfully");
+      }
+      else{
+        alert("Failed to add data");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+
+
+  
+  async applyLeave(){
+    console.log(this.taskData);
+    this.leaveData.token = sessionStorage.getItem("tokenUser");
+    console.log("Ashu");
+    console.log(this.leaveData);
+    
+
+    try {
+      const response = await this._auth.applyLeave(this.leaveData).toPromise(); 
+      if(response.status === "SUCCESS"){
+        alert("Leave Applied Successfully");
+      }
+      else{
+        alert("Failed to apply Leave");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+
+  
 
 }

@@ -1,0 +1,20 @@
+<div>
+    <button (click)="getAllUserData()">Refresh</button>
+
+    <table class="table">
+        <thead>
+          <tr>
+            
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor = "let user of Users">
+           <td>{{user?.name}}</td>
+           <td>{{user?.email}}</td>
+         </tr>
+        </tbody>
+      </table>
+</div>

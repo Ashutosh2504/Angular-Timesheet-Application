@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   async registerUser() {
     console.log(this.registerUserData);
-   // this.registerUserData.token = sessionStorage.getItem("token");
+    this.registerUserData.token = sessionStorage.getItem("tokenAdmin");
     console.log(this.registerUserData.token+": Ashutosh");
     try {
       const response = await this._auth.registerUser(this.registerUserData).toPromise();

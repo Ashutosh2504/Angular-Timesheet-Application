@@ -1,0 +1,31 @@
+<div class="table-responsive">
+
+  <table class="table">
+    <thead>
+      <tr>
+
+        <th scope="col">Full Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Leave Type</th>
+        <th scope="col">APPROVE</th>
+        <th scope="col">REJECT</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of Users">
+        <td>{{user?.name}}</td>
+        <td>{{user?.email}}</td>
+        <td>{{user?.leaveType}}</td>
+        <td> <button type="button" id="apprBtn" class="btn btn-primary" value="APPROVED"
+            (click)="getApproveValue(user)">Approved</button></td>
+        <td> <button type="button" id="rejBtn" class="btn btn-primary" value="REJECTED"
+            (click)="getRejectValue(user)">Reject</button></td>
+
+      </tr>
+    </tbody>
+
+
+
+  </table>
+</div>
