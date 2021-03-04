@@ -1,31 +1,47 @@
-<div class="table-responsive">
+<div class="body">
+  <div class="row pt-5">
+    <br>
+    <div class=" col-md-7 mx-4">
 
-  <table class="table">
-    <thead>
-      <tr>
+      <div class="table-responsive">
 
-        <th scope="col">Full Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Leave Type</th>
-        <th scope="col">APPROVE</th>
-        <th scope="col">REJECT</th>
+        <table class="table table-bordered">
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of Users">
-        <td>{{user?.name}}</td>
-        <td>{{user?.email}}</td>
-        <td>{{user?.leaveType}}</td>
-        <td> <button type="button" id="apprBtn" class="btn btn-primary" value="APPROVED"
-            (click)="getApproveValue(user)">Approved</button></td>
-        <td> <button type="button" id="rejBtn" class="btn btn-primary" value="REJECTED"
-            (click)="getRejectValue(user)">Reject</button></td>
+          <thead class="">
+            <tr>
 
-      </tr>
-    </tbody>
+              <th scope="col">Full Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Leave Type</th>
+              <th scope="col">Approve / Reject</th>
 
 
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of Users">
 
-  </table>
+              <td>{{user?.name}}</td>
+              <td>{{user?.email}}</td>
+              <td>{{user?.leaveType}}</td>
+              <td>
+                <div class="btn-group">
+                  <button type="button" id="apprBtn" class="btn btn-success" value="APPROVED"
+                    (click)="getApproveValue(user)">Approved</button>
+
+                  <button type="button" id="rejBtn" class="btn btn-warning" value="REJECTED"
+                    (click)="getRejectValue(user)">Rejected</button>
+                </div>
+              </td>
+
+
+            </tr>
+          </tbody>
+
+
+
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

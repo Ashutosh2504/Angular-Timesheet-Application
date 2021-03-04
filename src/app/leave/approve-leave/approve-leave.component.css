@@ -1,0 +1,20 @@
+.body{
+    background-image: url("../../../assets/time-wallpaper-6.jpg");
+    
+    height: 100%;
+    background-position: center;
+    background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+td{
+    color: beige;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+thead{
+    color: beige;
+    font-size: 20px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}

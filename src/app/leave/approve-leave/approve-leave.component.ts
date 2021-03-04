@@ -84,13 +84,13 @@ export class ApproveLeaveComponent implements OnInit {
     try {
       const response = await this._auth.approveLeave(this.leaveData).toPromise();
       if (response.status === "SUCCESS") {
-        alert("leave Approved Successfully");
+        alert("Leave Approved Successfully");
         this.approvedUsers = response.users;
         console.log(this.approvedUsers+"Ashutosh");
         console.log(response.users+"Ashutosh");
       }
       else {
-        alert("Failed to apply Leave");
+        alert("Failed to Approve Leave");
       }
     } catch (error) {
       console.log(error);

@@ -73,7 +73,6 @@ changeUser(userOrAdmin) {
       this.loginUserData.tokens = result.jwt;
       console.log(result.jwt);
       console.log(result.leaveStatus);
-
       //console.log(this.loginUserData.tokens);
       
       sessionStorage.setItem("tokenUser",this.loginUserData.tokens);
