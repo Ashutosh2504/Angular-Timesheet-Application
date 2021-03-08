@@ -11,13 +11,18 @@ export class AuthService {
   private _loginUser = "http://localhost:3000/loginuser";
   private _loginAdmin = "http://localhost:3000/loginadmin";
   private _addTimesheetData = "http://localhost:3000/addtimesheetdata";
+  private _showData = "http://localhost:3000/showdata";
+  private _applyForLeave = "http://localhost:3000/applyforleave";
+  private _approvalOfLeave = "http://localhost:3000/leavestatusapproval";
+  private _allUserData = "http://localhost:3000/getalluserdata";
+  private _approveLeave = "http://localhost:3000/approveorrejectleave";
+  private _appliedLeaveUser = "http://localhost:3000/appliedleaveuser";
+
+
 
   constructor(private http: HttpClient, private _router: Router) { }
  
-  registerUser(user)
-  {
-    return this.http.post<any>(this._registerUrl,user);
-  }
+  
 
   loginUser(userNameAndPasswordObjectInBody) 
   {
@@ -27,22 +32,58 @@ export class AuthService {
   {
     return this.http.post<any>(this._addTimesheetData,userDataOfTimesheet);
   }
+  showData(userDataOfTimesheet)
+  {
+    return this.http.post<any>(this._showData,userDataOfTimesheet);
+  }
+
+  applyLeave(userLeave){
+    return this.http.post<any>(this._applyForLeave,userLeave);
+  }
+  approvalofLeave(userLeave){
+    return this.http.post<any>(this._approvalOfLeave,userLeave);
+  }
+
+  approveLeave(adminApproval){
+    return this.http.post<any>(this._approveLeave,adminApproval);
+  }
+  
+  appliedLeaveUser(adminApproval){
+    return this.http.post<any>(this._appliedLeaveUser,adminApproval);
+  }
 
   loginAdmin(userNameAndPasswordObjectInBody) 
   {
     return this.http.post<any>(this._loginAdmin, userNameAndPasswordObjectInBody);
   }
-  
-  loggedIn() {
-    return !!localStorage.getItem('token') ;
-      
-  }
-  getToken() {
-    return localStorage.getItem('token');
+
+  registerUser(user)
+  {
+    return this.http.post<any>(this._registerUrl,user);
   }
 
-  logoutUser() {
-    localStorage.removeItem('token');
-    this._router.navigate(['/events']);
+  getAllUserData(user){
+    return this.http.post<any>(this._allUserData,user);
+  }
+  
+  loggedInUser() {
+    return !!sessionStorage.getItem('tokenUser') ;
+      
+  }
+  loggedInAdmin() {
+    return !!sessionStorage.getItem('tokenAdmin') ;
+      
+  }
+  getTokenUser() {
+    return sessionStorage.getItem('tokenUser');
+  }
+  getTokenAdmin() {
+    return sessionStorage.getItem('tokenAdmin');
+  }
+
+  logoutAll() {
+    sessionStorage.removeItem('tokenUser');
+    sessionStorage.removeItem('tokenAdmin');
+    localStorage.removeItem('');
   }
 }

@@ -1,0 +1,10 @@
+body{
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+.material-icons {
+    display: inline-flex;
+    vertical-align: middle;
+ }

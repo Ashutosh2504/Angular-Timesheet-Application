@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" href="#">Ashutosh Timesheet</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,12 +6,22 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf = "this._auth.loggedInUser()">
         <a class="nav-link" routerLink="/add-task" routerLinkActive="active">Timesheet</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" routerLink="/special" routerLinkActive="active">Special Events</a>
+      </li> -->
+      <li class="nav-item"*ngIf = "this._auth.loggedInAdmin()">
+        <a class="nav-link" routerLink="/allUsers" routerLinkActive="active">Employees</a>
       </li>
+      <li class="nav-item"*ngIf = "this._auth.loggedInAdmin()">
+        <a class="nav-link" routerLink="/approve-leave" routerLinkActive="active">Leave Requests</a>
+      </li>
+      <li class="nav-item" *ngIf = "this._auth.loggedInAdmin()">
+        <a class="nav-link" routerLink="/register" routerLinkActive = "active">Register</a>
+      </li>
+     
     </ul>
     <!-- <ul class="navbar-nav">
         <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
@@ -20,12 +30,12 @@
     </ul> -->
 
     <ul class="navbar-nav">
-      <a class="nav-link" routerLink="/login" routerLinkActive = "active">Login</a>
-      <a class="nav-link" routerLink="/register" routerLinkActive = "active">Register</a>
-
+      <!-- <a class="nav-link" routerLink="/login" routerLinkActive = "active">Login</a> -->
+      
+      <a class="nav-link" (click)="logoutAll()"   *ngIf = "this._auth.loggedInAdmin() || this._auth.loggedInUser() " >Logout</a>
     </ul>
   </div>
 </nav>    
-<div class="container">
+<div class="body">
   <router-outlet></router-outlet>            
 </div>

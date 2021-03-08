@@ -1,76 +1,156 @@
 <!-- add-task.component.html -->
 
 <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-6 form-class">
-            <h2>Add Task</h2>
-            <hr>
-  
-            <div id="alert1" class="alert alert-success hidden" role="alert">
-              <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> -->
-              <strong>Success!</strong> Data Added.
-            </div>
-  
-            <div id="alert2" class="alert alert-warning hidden" role="alert">
-              <strong>Success!</strong> Data Cleared.
-            </div>
-  
-            <form #addTaskForm="ngForm" (ngSubmit)="onSubmit(addTaskForm)"> 
-  
-                <div class="form-group">
-                    <label>Task Name: </label><br/>
-                    <input type="text" class="form-control" name="name" ngModel>
-                </div>
-  
-                <div class="form-group">
-                    <label>Task Category: </label><br/>
-                    <input list="task-category" class="form-control" name="category" ngModel>
-                    <datalist id="task-category">
-                        <option value="Training and Development">
-                        <option value="Client Meeting">
-                        <option value="Coaching/ Mentoring">
-                        <option value="TCS Internal Meeting">
-                    </datalist>
-                </div>
-  
-                <div class="form-group">
-                    <label>WON/SWON: </label><br/>
-                    <input type="text" class="form-control" name="won-swon" ngModel>
-                </div>
-  
-                <div class="form-group">
-                    <label>Duration: </label><br/>
-                    <input type="number" class="form-control " name="duration" [ngModel] = "duration">
-                </div>
-                <div class="btn-group">
-                  <button type="submit" class="btn btn-success btn-lg">Submit</button>
-                  <button type="button" (click)="resetInfo(addTaskForm)" class="btn-danger btn-lg">Reset</button>
-                  
+  <div class="row">
+    <div class="col-md-5 form-class">
+          <h2>ADD TASK</h2>
+          
+
+          <form class="form"> 
+
+              <div class="form-group">
+                  <label>Task Name: </label><br/>
+                  <input type="text" class="form-control" [(ngModel)] = "taskData.taskName" name="name" required>
               </div>
-            </form>
-        </div>
-  
-  
-  
-      <div class="col-xs-12 col-md-4 col-md-offset-1 userdata">
-          <h2>Past Data</h2>
-          <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Task Name</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Copy</th>
-                </tr>
-              </thead>
-  
-              <tbody>
-                <tr *ngFor = "let task of taskDetails">
-                  <td>{{task.taskName}}</td>
-                  <td>{{task.date}}</td>
-                  <td><button type="button"  class="btn btn-primary" (click)="copyDataToToday(task)" >Copy to today's task</button></td>
-                </tr>
-              </tbody>
-            </table>
+
+              <div class="form-group">
+                  <label>Task Category: </label><br/>
+                  <input list="task-category" class="form-control" name="taskCategory" [(ngModel)] = "taskData.taskCategory">
+                  <datalist id="task-category">
+                      <option value="Training and Development">
+                      <option value="Client Meeting">
+                      <option value="Coaching/ Mentoring">
+                      <option value="TCS Internal Meeting">
+                  </datalist>
+              </div>
+
+              <div class="form-group">
+                  <label>WON/SWON: </label><br/>
+                  <input type="text" class="form-control" name="won" [(ngModel)] = "taskData.won">
+              </div>
+
+              <div class="form-group">
+                  <label>Duration: </label><br/>
+                  <input type="number" class="form-control " name="duration" [(ngModel)] = "taskData.duration">
+              </div>
+              <div class="btn-group">
+                <button type="submit" class="btn btn-primary btn-lg" (click) = "addTaskData()">Submit</button>
+               <div class="leave-btn">
+
+                <button id="apply" style='margin-right:16px' type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal">Apply Leave</button>
+                <button  id="status" type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#leaveStatusModal" (click) = "leaveStatus()">Leave Status</button>
+
+               </div>
+                <!-- <button type="button" (click)="resetInfo(addTaskForm)" class="btn-danger btn-lg">Reset</button> -->
+                
+            </div>
+          </form>
       </div>
+
+
+
+    <div class="col-md-6  userdata">
+        <h2>PAST DATA</h2>
+        <table class="table ">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">TASK NAME</th>
+                <th scope="col">DATE</th>
+                <th scope="col">COPY EFFORTS</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor = "let task of timeSheetData">
+                <td>{{task.taskName}}</td>
+                <td>{{task.date}}</td>
+                <td><button type="button"  class="btn btn-primary" (click)="copyDataToToday(task)" >Copy to today's task</button></td>
+              </tr>
+            </tbody>
+          </table>
     </div>
   </div>
+
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      <h4 class="modal-title">Leave Application</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        
+        <div class="form-group">
+          <div class="row ">
+            <div class="col-md-12">
+              <label for="leaveType">Leave Type</label>
+              <input list="leave-category" id="leaveType" class="form-control" name="leaveType" [(ngModel)] = "leaveData.leaveType">
+                      <datalist id="leave-category">
+                          <option value="Sick Leave (SL)">
+                          <option value="Casual Leave (CL)">
+                          <option value="Maternity Leave (ML)">
+                          <option value="Marriage Leave (MRL)">
+                      </datalist>
+            </div>
+          </div>
+        <br/>
+          <div class="row">
+            <div class="col-md-8">
+              <label for="startingDate" >Starting Date</label>
+              <input id="startingDate" class="form-control" name="startingDate" type="date" [(ngModel)] = "leaveData.startingDate">
+
+            </div>
+            <div class="col-md-4">
+              <label for="days">Leave Days</label>
+              <input list="leaveDays" id="days" class="form-control" name="days" [(ngModel)] = "leaveData.days">
+                      <datalist id="leaveDays">  
+                          <option value="1" >1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                         
+                      </datalist>
+            </div>
+          </div>
+          
+         
+          
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-default" (click) = "applyLeave()">Apply</button>
+    </div>
+  </div>
+
+</div>
+</div>
+<!-- Modal -->
+<div id="leaveStatusModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      <h4 class="modal-title">Leave Status</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+       <p>Your leave is {{leaveApproval}}</p>
+       
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+</div>
+</div>

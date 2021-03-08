@@ -5,6 +5,8 @@ import { EventsComponent } from './events/events.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
+import { AllUserDataComponent } from './all-user-data/all-user-data.component';
+import { ApproveLeaveComponent } from './leave/approve-leave/approve-leave.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,15 @@ const routes: Routes = [
     component: EventsComponent
   },
   {
+    path: 'special',
+    component: SpecialEventsComponent
+  },
+  {
+    path: 'allUsers',
+    component: AllUserDataComponent
+  },
+  
+  {
     path: 'add-task',
     component: AddTaskComponent
   },
@@ -27,6 +38,11 @@ const routes: Routes = [
   {
     path:'register',
     component: RegisterComponent
+
+  },
+  {
+    path:'approve-leave',
+    component: ApproveLeaveComponent
 
   }
   
