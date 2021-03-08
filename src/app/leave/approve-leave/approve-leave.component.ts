@@ -24,6 +24,8 @@ export class ApproveLeaveComponent implements OnInit {
 
   approvedUsers: [];
 
+  approveRejectButtonEnabled:boolean = true;
+
   constructor(private _auth: AuthService) { }
   
   ngOnInit(): void {
@@ -46,7 +48,7 @@ export class ApproveLeaveComponent implements OnInit {
       if (response.status === "SUCCESS") {
         this.Users = response.users;
         console.log(response);
-        console.log("AAAAAAAAAAAAAAAAAAsdsdfwgsdvsdv");
+        console.log("AAAAAAAAAAAAAAAAAA");
         console.dir(response);
         // alert("Leave Approve Successfully");
       }
@@ -84,10 +86,24 @@ export class ApproveLeaveComponent implements OnInit {
     try {
       const response = await this._auth.approveLeave(this.leaveData).toPromise();
       if (response.status === "SUCCESS") {
-        alert("Leave Approved Successfully");
-        this.approvedUsers = response.users;
-        console.log(this.approvedUsers+"Ashutosh");
-        console.log(response.users+"Ashutosh");
+        this.approvedUsers = response.user;
+        console.log(response.status+"Ashutosh");
+        console.dir(response);
+
+        
+        if (response.user.leaveStatus==="APPROVED"){
+        alert("Leave Approved");
+        
+        
+        console.log(response.user);
+        }
+        else if  (response.user.leaveStatus==="REJECTED") {
+          alert("Leave Rejected");
+          this.approvedUsers = response.user;
+        console.log(this.approvedUsers+"Pranay");
+        console.log(response.user.leaveStatus+"Pranay");
+
+        }
       }
       else {
         alert("Failed to Approve Leave");

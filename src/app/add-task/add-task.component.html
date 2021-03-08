@@ -36,8 +36,10 @@
               <div class="btn-group">
                 <button type="submit" class="btn btn-primary btn-lg" (click) = "addTaskData()">Submit</button>
                <div class="leave-btn">
-                <button type="button" class="btn btn-dark btn-md" data-toggle="modal" data-target="#myModal">Apply Leave</button>
-                <button type="button" class="btn btn-dark btn-md" data-toggle="modal" data-target="#leaveStatusModal" (click) = "leaveStatus()">Leave Status</button>
+
+                <button id="apply" style='margin-right:16px' type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal">Apply Leave</button>
+                <button  id="status" type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#leaveStatusModal" (click) = "leaveStatus()">Leave Status</button>
+
                </div>
                 <!-- <button type="button" (click)="resetInfo(addTaskForm)" class="btn-danger btn-lg">Reset</button> -->
                 
@@ -85,19 +87,38 @@
       <div class="form-group">
         
         <div class="form-group">
-          <label for="sel1">Leave Type</label>
-          <input list="leave-category" class="form-control" name="leaveType" [(ngModel)] = "leaveData.leaveType">
-                  <datalist id="leave-category">
-                      <option value="Sick Leave (SL)">
-                      <option value="Casual Leave (CL)">
-                      <option value="Maternity Leave (ML)">
-                      <option value="Marriage Leave (MRL)">
-                  </datalist>
-          <!-- {{leaveData.leaveCategory}} -->
-            <!-- <option value="sick leave">Sick Leave (SL)</option>
-            <option value="casual leave">Casual Leave (CL)</option>
-            <option value="maternity leave">Maternity Leave (ML)</option>
-            <option value="marriage leave">Marriage Leave (MRL)</option> -->
+          <div class="row ">
+            <div class="col-md-12">
+              <label for="leaveType">Leave Type</label>
+              <input list="leave-category" id="leaveType" class="form-control" name="leaveType" [(ngModel)] = "leaveData.leaveType">
+                      <datalist id="leave-category">
+                          <option value="Sick Leave (SL)">
+                          <option value="Casual Leave (CL)">
+                          <option value="Maternity Leave (ML)">
+                          <option value="Marriage Leave (MRL)">
+                      </datalist>
+            </div>
+          </div>
+        <br/>
+          <div class="row">
+            <div class="col-md-8">
+              <label for="startingDate" >Starting Date</label>
+              <input id="startingDate" class="form-control" name="startingDate" type="date" [(ngModel)] = "leaveData.startingDate">
+
+            </div>
+            <div class="col-md-4">
+              <label for="days">Leave Days</label>
+              <input list="leaveDays" id="days" class="form-control" name="days" [(ngModel)] = "leaveData.days">
+                      <datalist id="leaveDays">  
+                          <option value="1" >1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                         
+                      </datalist>
+            </div>
+          </div>
+          
+         
           
         </div>
       </div>

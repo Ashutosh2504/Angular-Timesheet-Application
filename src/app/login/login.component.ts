@@ -27,8 +27,28 @@ export class LoginComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
+    
     this.isLoggedIn();
   }
+
+  emailAndPassword = new FormGroup({
+    email: new FormControl('',[
+      Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      password: new FormControl('',[
+        Validators.required,
+        Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{4,}")])
+    
+    }); 
+
+
+    get email(){
+      return this.emailAndPassword.get('email');
+      }
+    get password(){
+      return this.emailAndPassword.get('password');
+      }
+
 
 ///checking the usertype
 form = new FormGroup({
@@ -70,19 +90,19 @@ changeUser(userOrAdmin) {
     if(this.isLoginUserOrAdmin){
       // user login
       let result = await this._auth.loginUser(this.loginUserData).toPromise();
-      this.loginUserData.tokens = result.jwt;
-      console.log(result.jwt);
-      console.log(result.leaveStatus);
+      
       //console.log(this.loginUserData.tokens);
       
-      sessionStorage.setItem("tokenUser",this.loginUserData.tokens);
-      sessionStorage.setItem("emailUser",this.loginUserData.email);
+     
       
       
       if(result.status === "SUCCESS"){
         console.log("Login success");
         this._router.navigate(['/add-task']); // User component
-
+        this.loginUserData.tokens = result.jwt;
+        console.log(result.leaveStatus);
+        sessionStorage.setItem("tokenUser",this.loginUserData.tokens);
+        sessionStorage.setItem("emailUser",this.loginUserData.email);
       }
       else{
         alert("Please Verify your Credentials");

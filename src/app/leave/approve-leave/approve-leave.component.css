@@ -1,7 +1,9 @@
 .body{
-    background-image: url("../../../assets/time-wallpaper-6.jpg");
+    background-image: url("../../../assets/black.jpeg");
     
     height: 100%;
+    width: 100%;
+    position: absolute;
     background-position: center;
     background-attachment: fixed;
   background-repeat: no-repeat;
@@ -10,11 +12,12 @@
 }
 td{
     color: beige;
-    font-size: 20px;
+    font-size: 15px;
     font-family: sans-serif;
 }
 thead{
     color: beige;
-    font-size: 20px;
+    font-size: 18px;
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
+

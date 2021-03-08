@@ -11,23 +11,38 @@
         </div>
 
         <div class="card-body">
-          <form class="form">
+          <form class="form" name="loginForm" [formGroup]="emailAndPassword">
             <div class="form-group">
-              <!-- add selector dropdown for user type  -->
 
-              <!-- on click, check type of user and set isLoginUserOrAdmin flag variable to true or false -->
+              <label for="uname1">Email</label>
 
-              <label for="uname1">Username</label>
+              <input [class.is-invalid]="emailAndPassword.get('email').invalid && emailAndPassword.get('email').touched"
+                type="email" class="form-control rounded-0" [(ngModel)]="loginUserData.email" name="email"
+                formControlName="email" required />
 
-              <input type="text" class="form-control rounded-0" [(ngModel)]="loginUserData.email" name="email"
-                required />
+              <div *ngIf="(email.invalid && email.touched) || email.dirty">
+                <small *ngIf="email.errors?.required" class="text-danger"> Email is required</small>
+                <!-- question mark(?) is a safe navigation operator -->
+                <small *ngIf="email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+              </div>
             </div>
+
+
+
 
             <div class="form-group">
               <label>Password</label>
 
-              <input type="password" class="form-control rounded-0" [(ngModel)]="loginUserData.password" name="password"
-                required />
+              <input
+                [class.is-invalid]="emailAndPassword.get('password').invalid && emailAndPassword.get('password').touched"
+                type="password" class="form-control rounded-0" [(ngModel)]="loginUserData.password" name="password"
+                formControlName="password" required />
+
+              <div *ngIf="(password.invalid && password.touched) || password.dirty">
+                <small *ngIf="password.errors?.required" class="text-danger"> password is required</small>
+
+                <small *ngIf="password.errors?.pattern" class="text-danger">Please provide a valid password</small>
+              </div>
             </div>
 
             <form [formGroup]="form">
@@ -49,17 +64,13 @@
                     </div>
 
 
-                    
+
                   </div>
                 </div>
 
 
 
-                <div *ngIf="f.user.touched && f.user.invalid" class="alert alert-danger">
-                  <div *ngIf="f.user.errors.required">
-                    User Type is Required.
-                  </div>
-                </div>
+
               </div>
             </form>
 

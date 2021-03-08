@@ -35,7 +35,9 @@ export class AddTaskComponent implements OnInit {
   }
   leaveData ={
     token:"",
-     leaveType:""
+     leaveType:"",
+     startingDate:"",
+     days:""
     };
   leaveStatusToken ={
     token:""

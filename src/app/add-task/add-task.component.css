@@ -78,6 +78,7 @@ label{
 
 
 
+
 }
 
 
@@ -134,8 +135,31 @@ form button{
 
 }
 .leave-btn{
- 
 
-display: inline-block;
+display:flex;
+margin: 5px;
+margin-right: 2px;
+margin-left: 2px;
 
+}
+#apply{
+  background-color: coral;
+  
+}
+#status{
+  background-color: teal;
+}
+#apply:hover{
+  background-color: white;
+  color: coral;
+  font-weight: bold;
+  font-size: 20px;
+  transition: .3s;
+}
+#status:hover{
+  background-color: white;
+  color: teal;
+  font-weight: bold;
+  font-size: 20px;
+  transition: .3s;
 }

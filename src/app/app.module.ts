@@ -17,6 +17,7 @@ import { AllUserDataComponent } from './all-user-data/all-user-data.component';
 import { ApproveLeaveComponent } from './leave/approve-leave/approve-leave.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,7 @@ import { ApproveLeaveComponent } from './leave/approve-leave/approve-leave.compo
     AddTaskComponent,
     ApplyLeaveComponent,
     AllUserDataComponent,
-    ApproveLeaveComponent,
+    ApproveLeaveComponent
   
   ],
   imports: [

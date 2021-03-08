@@ -4,3 +4,22 @@
              0 0  0 2px rgb(255,255,255),
              0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
+.row{
+    background-image: url("../../assets/time-wallpaper-6.jpg");
+    
+    height: 91.7%;
+    width: 100%;
+    position: absolute;
+    background-position: center;
+    background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+input.ng-invalid{
+  border-left: 5px solid red;
+}
+
+input.ng-valid{
+  border-left: 5px solid green;
+}
